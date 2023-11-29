@@ -5,7 +5,6 @@ import streamlit as st
 # Title
 st.title("Hello GeeksForGeeks !!!")
 
-import streamlit as st
 
 st.title("Streamlit Számológép")
 
