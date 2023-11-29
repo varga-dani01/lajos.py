@@ -1,5 +1,4 @@
 # lajos.py
-jhgf
 # import module
 import streamlit as st
  
