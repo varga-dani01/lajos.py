@@ -5,45 +5,41 @@ import streamlit as st
 # Title
 st.title("Hello GeeksForGeeks !!!")
 
-from tkinter import *
+def add(x, y):
+    return x + y
 
-def evaluate_expression(expression):
-    try:
-        result = str(eval(expression))
-        entry_var.set(result)
-    except Exception as e:
-        entry_var.set("Hiba")
+def subtract(x, y):
+    return x - y
 
-def button_click(symbol):
-    current_text = entry_var.get()
-    entry_var.set(current_text + str(symbol))
+def multiply(x, y):
+    return x * y
 
-def clear_entry():
-    entry_var.set("")
+def divide(x, y):
+    if y != 0:
+        return x / y
+    else:
+        return "Hiba: osztás 0-val"
 
+while True:
+    num1 = float(input("Adj meg egy számot: "))
+    operator = input("Válassz műveletet (+, -, *, /): ")
+    num2 = float(input("Adj meg még egy számot: "))
 
-calculator = Tk()
-calculator.title("Számológép")
+    if operator == '+':
+        result = add(num1, num2)
+    elif operator == '-':
+        result = subtract(num1, num2)
+    elif operator == '*':
+        result = multiply(num1, num2)
+    elif operator == '/':
+        result = divide(num1, num2)
+    else:
+        print("Érvénytelen művelet!")
+        continue
 
+    print(f"Eredmény: {result}")
 
-entry_var = StringVar()
-entry = Entry(calculator, textvariable=entry_var, font=("Arial", 18), bd=10, insertwidth=4, width=14, justify="right")
-entry.grid(row=0, column=0, columnspan=4)
+    another_calculation = input("Szeretnél új számolást végezni? (igen/nem): ")
+    if another_calculation.lower() != 'igen':
+        break
 
-
-buttons = [
-    ('7', 1, 0), ('8', 1, 1), ('9', 1, 2), ('/', 1, 3),
-    ('4', 2, 0), ('5', 2, 1), ('6', 2, 2), ('*', 2, 3),
-    ('1', 3, 0), ('2', 3, 1), ('3', 3, 2), ('-', 3, 3),
-    ('0', 4, 0), ('.', 4, 1), ('=', 4, 2), ('+', 4, 3)
-]
-
-for (text, row, col) in buttons:
-    button = Button(calculator, text=text, font=("Arial", 14), padx=20, pady=20, command=lambda t=text: button_click(t))
-    button.grid(row=row, column=col)
-
-clear_button = Button(calculator, text="C", font=("Arial", 14), padx=20, pady=20, command=clear_entry)
-clear_button.grid(row=5, column=0, columnspan=3)
-
-# Fő ciklus indítása
-calculator.mainloop()
