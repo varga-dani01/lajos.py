@@ -5,50 +5,28 @@ import streamlit as st
 # Title
 st.title("Hello GeeksForGeeks !!!")
 
-def add(x, y):
-    return x + y
+import streamlit as st
 
-def subtract(x, y):
-    return x - y
+st.title("Streamlit Számológép")
 
-def multiply(x, y):
-    return x * y
+num1 = st.number_input("Adj meg egy számot", step=1.0)
+operator = st.selectbox("Válassz műveletet", ('+', '-', '*', '/'))
+num2 = st.number_input("Adj meg még egy számot", step=1.0)
 
-def divide(x, y):
-    if y != 0:
-        return x / y
+if st.button("Számol"):
+    if operator == '+':
+        result = num1 + num2
+    elif operator == '-':
+        result = num1 - num2
+    elif operator == '*':
+        result = num1 * num2
+    elif operator == '/':
+        if num2 != 0:
+            result = num1 / num2
+        else:
+            result = "Hiba: osztás 0-val"
     else:
-        return "Hiba: osztás 0-val"
+        result = "Érvénytelen művelet!"
 
-while True:
-    # Felhasználótól input bekérése
-    num1 = float(input("Adj meg egy számot: "))
-    operator = input("Válassz műveletet (+, -, *, /): ")
-    num2 = float(input("Adj meg még egy számot: "))
-
-    # Művelet végrehajtása és eredmény kiírása
-    if operator in ('+', '-', '*', '/'):
-        result = None
-        if operator == '+':
-            result = add(num1, num2)
-        elif operator == '-':
-            result = subtract(num1, num2)
-        elif operator == '*':
-            result = multiply(num1, num2)
-        elif operator == '/':
-            result = divide(num1, num2)
-        print(f"Eredmény: {result}")
-    else:
-        print("Érvénytelen művelet!")
-
-    # Új számológép használata vagy kilépés
-    another_calculation = input("Szeretnél új számolást végezni? (igen/nem): ")
-    if another_calculation.lower() != 'igen':
-        break
-
-    print(f"Eredmény: {result}")
-
-    another_calculation = input("Szeretnél új számolást végezni? (igen/nem): ")
-    if another_calculation.lower() != 'igen':
-        break
+    st.success(f"Eredmény: {result}")
 
