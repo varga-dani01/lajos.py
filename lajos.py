@@ -20,3 +20,5 @@ def button_click(symbol):
 
 def clear_entry():
     entry_var.set("")
+calculator = Tk()
+calculator.title("Számológép")
